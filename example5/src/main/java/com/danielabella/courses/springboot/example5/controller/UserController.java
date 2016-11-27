@@ -15,22 +15,19 @@ import com.danielabella.courses.springboot.example5.domain.User;
 import com.danielabella.courses.springboot.example5.service.UserService;
 
 @RestController
+@RequestMapping(value="/user")
 public class UserController {
 
-	private final UserService userService;
-
 	@Autowired
-	public UserController(final UserService userService) {
-		this.userService = userService;
-	}
+	private UserService userService;
 
-	@RequestMapping(value="/user", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity< List<User> > listAllUsers() {
 		return new ResponseEntity< List<User> >
 		(userService.listAllUsers(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public ResponseEntity<User> getUser(@PathVariable String id) {
 		
 		User user = userService.getById(id);
@@ -40,7 +37,7 @@ public class UserController {
 					new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/user", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<String> createUser(@RequestBody User user) {
 
 		try {

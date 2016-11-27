@@ -15,7 +15,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 	
-    @RequestMapping(value = "/teste", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuario", method = RequestMethod.GET)
     @ResponseBody
     public String home() {
         return "hello World";

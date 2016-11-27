@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(value="/usuario")
 public class UserController {
 
-	@RequestMapping(value="/usuario", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String listarTodosUsuarios() {
 		return "todos";
 	}
 
-	@RequestMapping(value="/usuario/{identificador}", method = RequestMethod.GET)
-	public String obterInformacaoUsuario(@PathVariable(value="identificador") String id) {
-		return "Ola, Meu Amigo Desenrolado que possui o ID = " + id;
+	@RequestMapping(value="/{identificador}", method = RequestMethod.GET)
+	public String obterInformacaoUsuario(@PathVariable String identificador) {
+		return "Ola, Meu Amigo Desenrolado que possui o ID = " + identificador;
 	}
 	
-	@RequestMapping(value="/usuario", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String createParticipant(@RequestBody User user) {
 
 		try {
